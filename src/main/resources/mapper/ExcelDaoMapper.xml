@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.excel.dao.ExcelDAO">
+  <select id="getView" resultType="com.excel.domain.excel.dto.DogDTO">
+    SELECT name name, breed breed, age age
+    FROM dogs
+  </select>
+  <delete id="clearDogList">
+    DELETE FROM dogs
+  </delete>
+  <insert id="saveDogList" parameterType="com.excel.domain.excel.dto.DogDTO">
+    INSERT INTO dogs(name, breed, age)
+    VALUES
+    <foreach collection="list" item="dog" separator=", ">
+      (#{dog.name}, #{dog.breed}, #{dog.age})
+    </foreach>
+  </insert>
+</mapper>

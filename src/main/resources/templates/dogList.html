@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Excel</title>
+</head>
+<body>
+<form th:action="@{/excel}" method="POST" enctype="multipart/form-data">
+    <input type="file" th:name="excelFile">
+    <input th:type="submit" value="제출" />
+</form>
+<br><br>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">이름</th>
+        <th scope="col">견종</th>
+        <th scope="col">나이</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="dog : ${dogs}" >
+        <td scope="row" th:text="${dog.name}"></td>
+        <td th:text="${dog.breed}"></td>
+        <td th:text="${dog.age}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
