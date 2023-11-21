@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.excel.dao.ExcelImageDAO">
+  <select id="getImages" resultType="String">
+    SELECT CONCAT('http://localhost:8080/image/dog/', image) image
+    FROM images
+  </select>
+  <insert id="saveImages" parameterType="String">
+    INSERT INTO images(image)
+    VALUES
+    <foreach collection="list" item="image" separator=", ">
+      (#{image})
+    </foreach>
+  </insert>
+</mapper>
